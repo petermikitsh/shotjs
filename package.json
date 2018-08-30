@@ -1,0 +1,11 @@
+{
+  "name": "shotjs",
+  "version": "0.0.0-0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Peter Mikitsh <peter.mikitsh@gmail.com>",
+  "license": "MIT"
+}

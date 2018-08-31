@@ -2,10 +2,44 @@
   "name": "shotjs",
   "version": "0.0.0-0",
   "description": "Performant screenshots & video recordings in the browser",
-  "main": "index.js",
+  "main": "cjs/index.js",
+  "module": "esm/index.js",
   "scripts": {
+    "build": "npm run build:cjs && npm run build:esm",
+    "build:cjs": "BABEL_ENV=commonjs babel src --out-dir cjs",
+    "build:esm": "BABEL_ENV=module babel src --out-dir esm",
+    "lint": "xo",
+    "start": "webpack-dev-server --hot",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Peter Mikitsh <peter.mikitsh@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/cli": "^7.0.0",
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-transform-runtime": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.0",
+    "eslint-config-xo-react": "^0.17.0",
+    "eslint-plugin-react": "^7.11.1",
+    "html-webpack-plugin": "^3.2.0",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.7",
+    "xo": "^0.22.0"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.0.0"
+  },
+  "xo": {
+    "env": [
+      "browser"
+    ],
+    "extends": ["xo", "xo-react/space"],
+    "space": 2
+  }
 }

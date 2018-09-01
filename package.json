@@ -4,12 +4,15 @@
   "description": "Performant screenshots & video recordings in the browser",
   "main": "cjs/index.js",
   "module": "esm/index.js",
+  "browser": "browser/index.js",
   "scripts": {
-    "build": "npm run build:cjs && npm run build:esm",
-    "build:cjs": "BABEL_ENV=commonjs babel src --out-dir cjs",
-    "build:esm": "BABEL_ENV=module babel src --out-dir esm",
+    "build": "run-s build:*",
+    "build:browser": "webpack --config webpack.browser.js",
+    "build:cjs": "BABEL_ENV=cjs babel src --out-dir cjs",
+    "build:esm": "babel src --out-dir esm",
     "lint": "xo",
-    "start": "webpack-dev-server --hot",
+    "server": "webpack-dev-server --hot",
+    "start": "run-p server 'build:* -- --watch' --print-label",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Peter Mikitsh <peter.mikitsh@gmail.com>",
@@ -17,16 +20,19 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
     "@babel/plugin-transform-runtime": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.0",
+    "compression-webpack-plugin": "^1.1.12",
     "eslint-config-xo-react": "^0.17.0",
     "eslint-plugin-react": "^7.11.1",
     "html-webpack-plugin": "^3.2.0",
+    "npm-run-all": "^4.1.3",
+    "open-browser-webpack-plugin": "0.0.5",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "uglifyjs-webpack-plugin": "^1.3.0",
     "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.7",
@@ -39,7 +45,10 @@
     "env": [
       "browser"
     ],
-    "extends": ["xo", "xo-react/space"],
+    "extends": [
+      "xo",
+      "xo-react/space"
+    ],
     "space": 2
   }
 }

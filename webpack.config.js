@@ -1,5 +1,9 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+
+const HOST = '0.0.0.0';
+const PORT = 4000;
 
 module.exports = function () {
   return {
@@ -7,8 +11,8 @@ module.exports = function () {
       contentBase: path.join(__dirname, './tmp'),
       disableHostCheck: true,
       historyApiFallback: true,
-      host: '0.0.0.0',
-      port: 4000,
+      host: HOST,
+      port: PORT,
       publicPath: '/',
       stats: 'minimal'
     },
@@ -30,9 +34,8 @@ module.exports = function () {
       publicPath: '/'
     },
     plugins: [
-      new HtmlWebpackPlugin({
-        template: 'example/index.html'
-      })
+      new HtmlWebpackPlugin({template: 'example/index.html'}),
+      new OpenBrowserPlugin({url: `http://${HOST}:${PORT}`})
     ]
   };
 };

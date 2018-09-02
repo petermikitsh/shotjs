@@ -37,7 +37,7 @@ Converts a HTMLElement `node` to a PNG DataURL.
 
 The shape of Object `opts` is:
 
-```
+```js
 {
   backgroundColor::String, // default is '#FFF'
   transforms::Array<Function> // default is []

@@ -19,7 +19,7 @@ document.body.appendChild(img);
 
 #### Advanced
 
-```
+```js
 import {renderNode, withFonts, withCursor, withViewport} from 'shotjs';
 const img = new Image();
 img.src = await renderNode(document.body, {

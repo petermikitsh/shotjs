@@ -1,13 +1,14 @@
 {
   "name": "shotjs",
   "version": "0.0.0-0",
-  "description": "Performant screenshots & video recordings in the browser",
+  "description": "Screenshots in the browser with useful addons",
   "main": "cjs/index.js",
   "module": "esm/index.js",
-  "browser": "browser/index.js",
+  "browser": "umd/index.js",
+  "sideEffects": "false",
   "scripts": {
     "build": "run-s build:*",
-    "build:browser": "webpack --config webpack.browser.js",
+    "build:umd": "webpack --config webpack.umd.js",
     "build:cjs": "BABEL_ENV=cjs babel src --out-dir cjs",
     "build:esm": "babel src --out-dir esm",
     "lint": "xo",
@@ -49,6 +50,14 @@
       "xo",
       "xo-react/space"
     ],
+    "rules": {
+      "unicorn/filename-case": 0
+    },
+    "settings": {
+      "react": {
+        "version": "16.4.2"
+      }
+    },
     "space": 2
   }
 }

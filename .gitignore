@@ -1,4 +1,4 @@
-browser
 cjs
 esm
 node_modules
+umd

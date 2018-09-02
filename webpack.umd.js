@@ -25,7 +25,7 @@ module.exports = {
     })]
   },
   output: {
-    path: path.resolve(__dirname, 'browser'),
+    path: path.resolve(__dirname, 'umd'),
     filename: '[name].js',
     library: 'ShotJS',
     libraryExport: 'default',

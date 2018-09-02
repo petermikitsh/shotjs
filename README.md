@@ -1,4 +1,4 @@
-## shotjs
+# shotjs
 
 Screenshots in the browser with useful addons
 
@@ -6,9 +6,9 @@ Screenshots in the browser with useful addons
 🔧 Ships as **CommonJS**, **ESModule**, and **UMD** (`window.ShotJS`) builds\
 🏎 **~20ms** initialization, **<200ms** to make a screenshot
 
-### Usage
+## Usage
 
-#### Basic
+### Basic
 
 ```js
 import {renderNode} from 'shotjs';
@@ -17,7 +17,7 @@ img.src = await renderNode(document.body);
 document.body.appendChild(img);
 ```
 
-#### Advanced
+### Advanced
 
 ```js
 import {renderNode, withFonts, withCursor, withViewport} from 'shotjs';
@@ -29,13 +29,9 @@ img.src = await renderNode(document.body, {
 document.body.appendChild(img);
 ```
 
-### APIs
+## APIs
 
-#### init `() => Promise(object)`
-
-Performs optional pre-processing. Pass the result of this function to `renderNode` as opts.
-
-#### renderNode `(node::HTMLElement, opts::Object) => Promise(String)`
+### renderNode `(node::HTMLElement, opts::Object) => Promise(String)`
 
 Converts a HTMLElement `node` to a PNG DataURL.
 
@@ -43,28 +39,28 @@ The shape of Object `opts` is:
 
 ```
 {
-  backgroundColor::String,
-  transforms::Array<Function>
+  backgroundColor::String, // default is '#FFF'
+  transforms::Array<Function> // default is []
 }
 ```
 
-`backgroundColor`: Defaults to `#FFF`.
+`backgroundColor`: Image background color.
 
 `transforms`: Functions you can use to augment the snapshot. Transforms recieve an SVG node that can be modified. Transforms can be sync or async.
 
-#### withFonts `(SVGSVGElement, opts) => Promise`
+### withFonts `(SVGSVGElement, opts) => Promise`
 
 Render your screenshot with web fonts. All external stylesheets that import fonts must be specified with the `crossOrigin` attribute.
 
-#### withCursor `(SVGSVGElement, opts) => void`
+### withCursor `(SVGSVGElement, opts) => void`
 
 Paints a cursor at the user's cursor location when the screenshot occurred.
 
-#### withViewport `(SVGSVGElement, opts) => void`
+### withViewport `(SVGSVGElement, opts) => void`
 
 Limit your snapshot to the viewport (the visible portion of the webpage).
 
-### How this works
+## How this works
 
 The target DOM node is reconstructed inside a `<canvas>` node in memory.
 
@@ -75,6 +71,6 @@ npm install
 npm start
 ```
 
-### Credit
+## Credit
 
 Heavily influenced by [dom-to-image](https://github.com/tsayen/dom-to-image) and [ccapture.js](https://github.com/spite/ccapture.js).

@@ -18,15 +18,28 @@ module.exports = function () {
     },
     devtool: 'inline-source-map',
     entry: [
-      './example/index'
+      './docs/index'
     ],
     mode: 'development',
     module: {
       rules: [
         {
           test: /\.js$/,
-          exclude: /node_modules/,
+          include: [
+            path.resolve(__dirname, 'docs'),
+            path.resolve(__dirname, 'src'),
+          ],
           loader: 'babel-loader'
+        },
+        {
+          test: /\.css$/,
+          include: [
+            path.resolve(__dirname, 'node_modules/material-react-components')
+          ],
+          use: [
+            'style-loader',
+            'css-loader'
+          ]
         }
       ]
     },
@@ -34,7 +47,7 @@ module.exports = function () {
       publicPath: '/'
     },
     plugins: [
-      new HtmlWebpackPlugin({template: 'example/index.html'}),
+      new HtmlWebpackPlugin({template: 'docs/index.html'}),
       new OpenBrowserPlugin({url: `http://${HOST}:${PORT}`})
     ]
   };
